@@ -22,13 +22,13 @@ List<Widget> pages = [
 ];
 int index = 0;
 
-class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
+class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
+    with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: SizedBox(
-        
         height: MediaQuery.of(context).size.height / 9,
         child: FloatingNavbar(
           backgroundColor: logoBlue,
@@ -37,9 +37,10 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           currentIndex: index,
           items: [
             FloatingNavbarItem(icon: Icons.dashboard, title: 'Dashboard'),
-            FloatingNavbarItem(icon: Icons.switch_account_rounded, title: 'Attendance'),
+            FloatingNavbarItem(
+                icon: Icons.switch_account_rounded, title: 'Attendance'),
             FloatingNavbarItem(icon: Icons.book_online, title: 'Booking'),
-            FloatingNavbarItem(icon: Icons.local_shipping , title: 'Shipment'),
+            FloatingNavbarItem(icon: Icons.local_shipping, title: 'Shipment'),
           ],
         ),
       ),
