@@ -1,6 +1,4 @@
-import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/screens/booking/widgets/booking_container.dart';
-import 'package:best_seller/screens/booking/widgets/floating_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

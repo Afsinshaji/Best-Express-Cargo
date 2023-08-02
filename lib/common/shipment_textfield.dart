@@ -11,14 +11,14 @@ class ShipmentTextFieldWidget extends StatelessWidget {
     required this.wlength,
     required this.hintText,
     required this.hlength,
-    // required this.controller,
+     this.controller,
     this.keyboardType = false,
   });
   final String title;
   final double wlength;
   final double hlength;
   final String hintText;
-  // TextEditingController controller;
+   TextEditingController? controller;
   bool keyboardType;
   // bool _validate = false;
   @override

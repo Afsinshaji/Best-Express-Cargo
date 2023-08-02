@@ -43,40 +43,40 @@ class _FloatingActionButtonWidgetState extends State<FloatingActionButtonWidget>
       items: <Bubble>[
         // Floating action menu item
         Bubble(
-          title: "Edit ",
-          iconColor: logoBlue,
-          bubbleColor: Colors.yellow,
+          title: "Edit   ",
+          iconColor: whiteShade,
+          bubbleColor: logoBlue,
           icon: Icons.edit,
-          titleStyle: const TextStyle(fontSize: 18, color: logoBlue),
+          titleStyle: const TextStyle(fontSize: 18, color: whiteShade),
           onPress: () {},
         ),
         // Floating action menu item
         //Floating action menu item
         Bubble(
-          title: "View",
-          iconColor: logoBlue,
-          bubbleColor: Colors.green,
-          icon: Icons.remove_red_eye_outlined,
-          titleStyle: const TextStyle(fontSize: 18, color: logoBlue),
+          title: "View ",
+          iconColor: whiteShade,
+          bubbleColor: logoBlue,
+          icon: Icons.remove_red_eye,
+          titleStyle: const TextStyle(fontSize: 18, color: whiteShade),
           onPress: () {
             _animationController.reverse();
           },
         ),
 
         Bubble(
-          title: "Print",
+          title: "Print  ",
           iconColor: Colors.white,
-          bubbleColor: Colors.black54,
+          bubbleColor: logoBlue,
           icon: Icons.print,
           titleStyle: TextStyle(fontSize: 16, color: Colors.white),
           onPress: () {},
         ),
         Bubble(
-          title: "Add  ",
-          iconColor: logoBlue,
-          bubbleColor: Colors.yellow,
+          title: "Add    ",
+          iconColor: whiteShade,
+          bubbleColor: logoBlue,
           icon: Icons.add,
-          titleStyle: TextStyle(fontSize: 16, color: logoBlue),
+          titleStyle: const TextStyle(fontSize: 16, color: whiteShade),
           onPress: () {},
         ),
       ],
