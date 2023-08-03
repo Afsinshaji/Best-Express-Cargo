@@ -4,8 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import '../constant/const.dart';
 
 // ignore: must_be_immutable
-class ShipmentTextFieldWidget extends StatelessWidget {
-  ShipmentTextFieldWidget({
+class TextFieldForAddress extends StatelessWidget {
+  TextFieldForAddress({
     super.key,
     required this.title,
     required this.wlength,
@@ -42,7 +42,7 @@ class ShipmentTextFieldWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only( left: 15),
             child: TextFormField(
-              maxLines: 1,
+              maxLines: 5,
               // controller: controller,
               onTapOutside: (event) {
                 FocusScope.of(context).requestFocus(FocusNode());
@@ -62,13 +62,13 @@ class ShipmentTextFieldWidget extends StatelessWidget {
                 fillColor: Colors.transparent,
                 border: InputBorder.none,
               ),
-              style: 
+              style: GoogleFonts.ubuntu(
                 // height: 1,
-               const TextStyle(
+                textStyle: const TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                 ),
-             
+              ),
             ),
           ),
         )

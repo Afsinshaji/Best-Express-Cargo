@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../constant/const.dart';
+
 class AttendanceScreen extends StatelessWidget {
   const AttendanceScreen({super.key});
 
@@ -13,18 +15,40 @@ class AttendanceScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Attendance",
-          style: GoogleFonts.kanit(
-            textStyle: Theme.of(context).textTheme.bodyLarge,
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Att",
+              style: GoogleFonts.baloo2(
+                  textStyle: Theme.of(context).textTheme.bodyLarge,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: mainConColor),
+            ),
+            Text(
+              "enda",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              "nce",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 35,
+                fontWeight: FontWeight.bold,
+                color: mainConColor,
+              ),
+            ),
+          ],
         ),
         bottom: PreferredSize(
             preferredSize:
-                Size.fromHeight(MediaQuery.of(context).size.height / 7),
+                Size.fromHeight(MediaQuery.of(context).size.height / 6),
             child: const Column(
               children: [
                 Row(

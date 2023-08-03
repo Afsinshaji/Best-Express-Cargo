@@ -1,13 +1,17 @@
 import 'package:best_seller/common/shipment_textfield.dart';
+import 'package:best_seller/screens/booking/inside_screen/receiver_info_adding_screen.dart';
+import 'package:best_seller/screens/booking/inside_screen/sender_info_adding_screen.dart';
 import 'package:best_seller/screens/booking/widgets/date_in_shipping_info.dart';
 import 'package:best_seller/screens/booking/widgets/drop_down_widget.dart';
+import 'package:best_seller/screens/booking/widgets/recevier_address_adding_button.dart';
 import 'package:best_seller/screens/booking/widgets/submit_button_in_edit_shipment.dart';
 import 'package:best_seller/screens/booking/widgets/title_info_in_edit_shipment.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../widgets/floating_button.dart';
-import '../widgets/sender_receiver_with_button.dart';
+import '../widgets/sender_address_adding_button.dart';
 
 class EditShipmentScreen extends StatelessWidget {
   const EditShipmentScreen({super.key});
@@ -54,14 +58,11 @@ class EditShipmentScreen extends StatelessWidget {
                     title: "Booking No.",
                     wlength: 2.5,
                     hintText: "TB10019",
-                    hlength: 22),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10),
-                  child: DropDownListWidget(
-                      boxWidth: 200,
-                      title: "Branch List",
-                      hintText: "Select Branch List"),
-                ),
+                    hlength: 19),
+                const DropDownListWidget(
+                    boxWidth: 2,
+                    title: "Branch List",
+                    hintText: "Select Branch List"),
               ],
             ),
             SizedBox(
@@ -84,7 +85,7 @@ class EditShipmentScreen extends StatelessWidget {
             const TitleInfoWidget(
               heading: 'Receiver Info',
             ),
-            const SenderReceiverWithButtonWidget(
+            const ReceiverAddressAddingBUtton(
               dropTitle: "Receiver/Customer",
               dropHint: "Select Branch List",
               textFieldTitle: "Receiver  Address",
@@ -99,11 +100,11 @@ class EditShipmentScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DropDownListWidget(
-                    boxWidth: 200,
+                    boxWidth: 2.3,
                     title: "Courier Company",
                     hintText: "Select Courier Company"),
                 DropDownListWidget(
-                    boxWidth: 200,
+                    boxWidth: 2.3,
                     title: "Shipping Methods",
                     hintText: "Select Shipping Methods"),
               ],
@@ -115,11 +116,11 @@ class EditShipmentScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DropDownListWidget(
-                    boxWidth: 200,
+                    boxWidth: 2.3,
                     title: "Payment Method",
                     hintText: "Select Payment Method"),
                 DropDownListWidget(
-                    boxWidth: 200, title: "Status", hintText: "Select Status"),
+                    boxWidth: 2.3, title: "Status", hintText: "Select Status"),
               ],
             ),
             SizedBox(
@@ -128,41 +129,37 @@ class EditShipmentScreen extends StatelessWidget {
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                // SizedBox(width: width/150,),
                 DateInShippingInfo(),
                 DropDownListWidget(
-                    boxWidth: 200, title: "Collected By", hintText: "Select"),
+                    boxWidth: 2.3, title: "Collected By", hintText: "Select"),
               ],
             ),
             SizedBox(
               height: height / 50,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                // SizedBox(
-                //   width: width / 150,
-                // ),
-                const Padding(
-                  padding: EdgeInsets.only(top: 5, left: 3.6),
-                  child: DropDownListWidget(
-                      boxWidth: 200,
-                      title: "Delivery Type",
-                      hintText: "Select Delivery Type"),
+                SizedBox(
+                  width: width * 0.02,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 0),
-                  child: ShipmentTextFieldWidget(
-                      title: "Booking No.",
-                      wlength: 2.2,
-                      hintText: "TB10019",
-                      hlength: 22),
-                ),
+                const DropDownListWidget(
+                    boxWidth: 2.2,
+                    title: "Delivery Type",
+                    hintText: "Select Delivery Type"),
+                ShipmentTextFieldWidget(
+                    keyboardType: true,
+                    title: "LRL Tracking Code",
+                    wlength: 2.3,
+                    hintText: "TB10019",
+                    hlength: 19),
               ],
             ),
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(15),
               child: DropDownListWidget(
-                  boxWidth: 400,
+                  boxWidth: 1,
                   title: "Staff Name",
                   hintText: "Select Staff Name"),
             ),
@@ -208,4 +205,22 @@ class EditShipmentScreen extends StatelessWidget {
   cancel(BuildContext context) {
     Navigator.of(context).pop();
   }
+}
+
+navigationToSenderAddressAddingScreen(BuildContext context) {
+  Navigator.of(context).push(
+    CupertinoPageRoute(
+      fullscreenDialog: true,
+      builder: (context) => const SenderInfoAddingScreen(),
+    ),
+  );
+}
+
+navigationToRecevierAddressAddingScreen(BuildContext context) {
+  Navigator.of(context).push(
+    CupertinoPageRoute(
+      fullscreenDialog: true,
+      builder: (context) => const ReceiverInfoAddingScreen(),
+    ),
+  );
 }

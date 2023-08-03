@@ -8,14 +8,15 @@ import 'package:best_seller/screens/booking/widgets/title_info_in_edit_shipment.
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class SenderInfoAddingScreen extends StatefulWidget {
-  const SenderInfoAddingScreen({super.key});
+class ReceiverInfoAddingScreen extends StatefulWidget {
+  const ReceiverInfoAddingScreen({super.key});
 
   @override
-  State<SenderInfoAddingScreen> createState() => _SenderInfoAddingScreenState();
+  State<ReceiverInfoAddingScreen> createState() =>
+      _ReceiverInfoAddingScreenState();
 }
 
-class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
+class _ReceiverInfoAddingScreenState extends State<ReceiverInfoAddingScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.sizeOf(context).height;
@@ -24,7 +25,7 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Adding Sender Info",
+          "Receiver Sender Info",
           style: GoogleFonts.aBeeZee(
             textStyle: Theme.of(context).textTheme.bodyLarge,
             fontSize: 30,
@@ -44,7 +45,7 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
               title: "Name",
               wlength: 0,
               hintText: "Name",
-              hlength: 20,
+              hlength: 19,
             ),
             SizedBox(
               height: height / 100,
@@ -53,7 +54,7 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
               title: "Email",
               wlength: 0,
               hintText: "Email",
-              hlength: 20,
+              hlength: 19,
             ),
             SizedBox(
               height: height / 100,
@@ -61,16 +62,23 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(width: width*0.01,),
-                 const DropDownListWidget(
-                     boxWidth:  2.2,
-                     title: "Sender Identification Type",
-                     hintText: "Identification Type"),
+                SizedBox(
+                  width: width * 0.02,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(
+                    top: 5,
+                  ),
+                  child: DropDownListWidget(
+                      boxWidth:  2.2,
+                      title: "Sender Identification Type",
+                      hintText: "Identification Type"),
+                ),
                 ShipmentTextFieldWidget(
                     title: "Sender Id",
                     wlength: 2.5,
                     hintText: "Document Id",
-                    hlength: 20),
+                    hlength: 19),
               ],
             ),
             SizedBox(
@@ -143,10 +151,9 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
             const SizedBox(
               height: 5,
             ),
-             const Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                
                 DropDownListWidget(
                     boxWidth: 2.2,
                     title: "Country",
@@ -158,37 +165,41 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
             // SizedBox(
             //       height: height / 60,
             //     ),
-             const Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: DropDownListWidget(
-                  boxWidth:  1, title: "City", hintText: "Select City"),
+                  boxWidth: 1, title: "City", hintText: "Select City"),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: width*0.03,),
-                 const DropDownListWidget(
-                    boxWidth:  4, title: "Code", hintText: "code"),
+                SizedBox(
+                  width: width * 0.03,
+                ),
+                const DropDownListWidget(
+                    boxWidth: 4, title: "Code", hintText: "code"),
                 ShipmentTextFieldWidget(
                   keyboardType: true,
                     title: "Whatsapp number",
                     wlength: 1.6,
                     hintText: "Enter 9 digits",
-                    hlength: 20),
+                    hlength: 19),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: width*0.03,),
-                 const DropDownListWidget(
-                    boxWidth:  4, title: "Code", hintText: "code"),
+                SizedBox(
+                  width: width * 0.03,
+                ),
+                const DropDownListWidget(
+                    boxWidth: 4, title: "Code", hintText: "code"),
                 ShipmentTextFieldWidget(
                   keyboardType: true,
                     title: "Phone",
                     wlength: 1.6,
                     hintText: "Enter 9 digits",
-                    hlength: 20),
+                    hlength: 19),
               ],
             ),
             ShipmentTextFieldWidget(
@@ -196,11 +207,13 @@ class _SenderInfoAddingScreenState extends State<SenderInfoAddingScreen> {
                 title: "Pin Code",
                 wlength: 1,
                 hintText: "Pin Code",
-                hlength: 20),
+                hlength: 19),
 
             TextFieldForAddress(
                 title: "Address ", wlength: 1, hintText: "Address", hlength: 7),
-                SizedBox(height: height/22,),
+            SizedBox(
+              height: height / 22,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

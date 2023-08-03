@@ -49,7 +49,7 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
                   fontSize: 14, fontWeight: FontWeight.bold, color: logoRed)),
         ),
         Container(
-          // width: MediaQuery.sizeOf(context).width / widget.boxWidth,
+           height: MediaQuery.sizeOf(context).width / 10,
           decoration: BoxDecoration(
             color: greyShade,
             borderRadius: BorderRadius.circular(8),
@@ -86,7 +86,8 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
                 buttonStyleData:  ButtonStyleData(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   height: 40,
-                  width: widget.boxWidth,
+                  width:MediaQuery.sizeOf(context).width/ widget.boxWidth,
+                  
                 ),
                 dropdownStyleData: const DropdownStyleData(
                   maxHeight: 200,

@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:animated_snack_bar/animated_snack_bar.dart';
+import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/functions/location.dart';
 import 'package:best_seller/screens/attendence/widgets/create_attendance.dart';
@@ -41,14 +41,26 @@ class AttendenceContainer extends StatelessWidget {
               onPressed: () {
                 var time = DateTime.now();
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CreateAttendcance(time: time,),
+                  builder: (context) => CreateAttendcance(
+                    time: time,
+                  ),
                 ));
                 CurrentLocation().getCurrentLocation();
-                AnimatedSnackBar.rectangle("Timing",
-                        "CheckIn Time: 8:00 AM To 10:30 AM |Checkout Time :8:30 PM To 11:55 PM",
-                        type: AnimatedSnackBarType.warning,
-                        duration: const Duration(seconds: 5))
-                    .show(context);
+                final snackBar = SnackBar(
+                
+                  padding: const EdgeInsets.all(30),
+                  duration: const Duration(seconds: 3),
+                  elevation: 0,
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  content: AwesomeSnackbarContent(
+                    inMaterialBanner: true,
+                    title: "Timing",
+                    message: "CheckIn Time: 8:00 AM To 10:30 AM |Checkout Time :8:30 PM To 11:55 PM",
+                    contentType: ContentType.help,
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
                 log(time.toString());
               },
@@ -62,3 +74,4 @@ class AttendenceContainer extends StatelessWidget {
     );
   }
 }
+                       

@@ -13,10 +13,11 @@ class SenderReceiverWithButtonWidget extends StatelessWidget {
     required this.dropHint,
     required this.textFieldTitle,
     required this.textFieldHint,
+ 
   });
   final String dropTitle;
   final String dropHint;
-
+  
   final String textFieldTitle;
   final String textFieldHint;
 
@@ -25,10 +26,10 @@ class SenderReceiverWithButtonWidget extends StatelessWidget {
     return Column(
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             DropDownListWidget(
-                boxWidth: 322, title: dropTitle, hintText: dropTitle),
+                boxWidth: 1.4, title: dropTitle, hintText: dropTitle),
             Padding(
               padding: const EdgeInsets.only(top: 18),
               child: ElevatedButton(
@@ -64,7 +65,7 @@ class SenderReceiverWithButtonWidget extends StatelessWidget {
             title: textFieldTitle,
             wlength: 0,
             hintText: textFieldHint,
-            hlength: 22)
+            hlength: 19)
       ],
     );
   }

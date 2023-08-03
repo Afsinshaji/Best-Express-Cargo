@@ -1,8 +1,13 @@
 import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/navbar/bottomnavbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((value) => runApp(const MyApp()));
   runApp(const MyApp());
 }
 

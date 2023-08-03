@@ -49,7 +49,7 @@ class _DateInShippingInfoState extends State<DateInShippingInfo> {
             ),
             Container(
               height: MediaQuery.of(context).size.height / 22,
-              width: MediaQuery.of(context).size.width / 2,
+              width: MediaQuery.of(context).size.width / 2.3,
               decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: logoBlue),
