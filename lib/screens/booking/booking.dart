@@ -1,4 +1,8 @@
+import 'package:best_seller/constant/const.dart';
+import 'package:best_seller/screens/booking/cargo_screen.dart';
+import 'package:best_seller/screens/booking/moving_screen.dart';
 import 'package:best_seller/screens/booking/widgets/booking_container.dart';
+import 'package:best_seller/screens/booking/widgets/booking_cargo_tile_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,62 +12,72 @@ class BookingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      // backgroundColor: mainConColor,
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Booking",
-          style: GoogleFonts.aBeeZee(
-            textStyle: Theme.of(context).textTheme.bodyLarge,
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
-        ),
-        bottom: PreferredSize(
-          preferredSize:
-              Size.fromHeight(MediaQuery.of(context).size.height / 15),
-          child: Padding(
-            padding: EdgeInsets.only(
-                top: height / 30,
-                left: width / 15,
-                right: width / 15,
-                bottom: height / 122),
-            child: SizedBox(
-              height: height / 22,
-              child: const CupertinoSearchTextField(
-                suffixIcon: Icon(
-                  CupertinoIcons.xmark_circle_fill,
-                  size: 22,
+    var height = MediaQuery.sizeOf(context).height;
+    var width = MediaQuery.sizeOf(context).width;
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          // backgroundColor: mainConColor,
+          appBar: AppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Boo",
+                  style: GoogleFonts.baloo2(
+                      textStyle: Theme.of(context).textTheme.bodyLarge,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: mainConColor),
                 ),
-                backgroundColor: Colors.white,
-              ),
+                Text(
+                  "K",
+                  style: GoogleFonts.baloo2(
+                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "ing",
+                  style: GoogleFonts.baloo2(
+                    textStyle: Theme.of(context).textTheme.bodyLarge,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: mainConColor,
+                  ),
+                ),
+              ],
+            ),
+            bottom: PreferredSize(
+              preferredSize:
+                  Size.fromHeight(MediaQuery.of(context).size.height / 15),
+              child: const TabBar(
+                  indicatorColor: mainConColor,
+                  unselectedLabelColor: whiteShade,
+                  labelColor: whiteShade,
+                  indicatorSize: TabBarIndicatorSize.tab,
+                  indicatorWeight: 4,
+                  tabs: [
+                    Tab(text: "Cargo"),
+                    Tab(text: "Moving"),
+                  ]),
             ),
           ),
-        ),
-      ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            GridView.builder(
-              primary: false,
-              shrinkWrap: true,
-              itemCount: 22,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                return const BookingContainerWidget();
-              },
-            ),
-            // BookingContainerWidget(),
-          ],
-        ),
-      ),
-      
+          body: const TabBarView(children: [CargoScreen(), MovingScreen()])
+
+          //  Expanded(
+          //    child: ListView.builder(
+          //     physics: const BouncingScrollPhysics(),
+          //     itemCount: 22,
+          //     itemBuilder: (context, index) =>  BookingTileWidget(index: index+1),
+
+          //    ),
+          //  ),
+          // BookingContainerWidget(),
+
+          ),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class LocalAuth {
   final LocalAuthentication auth = LocalAuthentication();
