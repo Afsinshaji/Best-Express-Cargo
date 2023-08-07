@@ -2,7 +2,6 @@ import 'package:best_seller/screens/booking/widgets/date_in_edit_moving.dart';
 import 'package:best_seller/screens/booking/widgets/sender_address_adding_button.dart';
 import 'package:best_seller/screens/booking/widgets/title_info_in_edit_shipment.dart';
 import 'package:best_seller/screens/booking/widgets/update_button_in_edit_moving.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

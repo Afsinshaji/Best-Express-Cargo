@@ -8,15 +8,9 @@ import 'package:best_seller/screens/booking/widgets/title_info_in_edit_shipment.
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ReceiverInfoAddingScreen extends StatefulWidget {
+class ReceiverInfoAddingScreen extends StatelessWidget {
   const ReceiverInfoAddingScreen({super.key});
 
-  @override
-  State<ReceiverInfoAddingScreen> createState() =>
-      _ReceiverInfoAddingScreenState();
-}
-
-class _ReceiverInfoAddingScreenState extends State<ReceiverInfoAddingScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.sizeOf(context).height;

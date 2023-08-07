@@ -1,9 +1,6 @@
 import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/screens/booking/cargo_screen.dart';
 import 'package:best_seller/screens/booking/moving_screen.dart';
-import 'package:best_seller/screens/booking/widgets/booking_container.dart';
-import 'package:best_seller/screens/booking/widgets/booking_cargo_tile_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
