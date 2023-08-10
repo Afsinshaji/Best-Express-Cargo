@@ -29,7 +29,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen>
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: SizedBox(
-        height: MediaQuery.of(context).size.height / 9,
+        height: MediaQuery.of(context).size.height / 7,
         child: FloatingNavbar(
           backgroundColor: logoBlue,
           iconSize: 18,

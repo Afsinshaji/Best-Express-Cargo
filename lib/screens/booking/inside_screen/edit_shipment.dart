@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../constant/const.dart';
 import '../widgets/floating_button.dart';
 import '../widgets/sender_address_adding_button.dart';
 
@@ -23,15 +24,37 @@ class EditShipmentScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          "Edit Shipment",
-          style: GoogleFonts.aBeeZee(
-            textStyle: Theme.of(context).textTheme.bodyLarge,
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
+        // centerTitle: true,
+        title: Row(
+           mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Edit ",
+              style: GoogleFonts.baloo2(
+                  textStyle: Theme.of(context).textTheme.bodyLarge,
+                  fontSize:30,
+                  fontWeight: FontWeight.bold,
+                  color: mainConColor),
+            ),
+            Text(
+              "Shi",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              "pment",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: mainConColor,
+              ),
+            ),
+          ],
         ),
         leading: IconButton(
             onPressed: () {

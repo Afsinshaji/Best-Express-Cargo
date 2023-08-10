@@ -1,7 +1,7 @@
 import 'package:best_seller/common/login_text_field.dart';
 import 'package:best_seller/common/login_textform_for_email_login.dart';
 import 'package:best_seller/constant/const.dart';
-import 'package:best_seller/navbar/bottomnavbar.dart';
+import 'package:best_seller/navbar/animated_bottom.dart';
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: height / 10),
+            SizedBox(height: height / 12),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -35,28 +35,31 @@ class LoginScreen extends StatelessWidget {
                 // ),
                 Text(
                   "Sign In",
-                  style: GoogleFonts.raleway(
-                      fontSize: 40, fontWeight: FontWeight.w800),
+                  style: GoogleFonts.baloo2(
+                      fontSize: 30, fontWeight: FontWeight.w800),
                 ),
               ],
             ),
-            SizedBox(height: height / 22),
+            SizedBox(height: height / 30),
             Image.asset(
               'asset/Best Express Cargo logo.png',
               // width: 800.w,
               // height: 600.h,
               // scale: 12,
             ),
-            SizedBox(height: height / 30),
-            Image.asset(
-              'asset/quirky-lock-with-password-1-removebg-preview.png',
-              // width: 800.w,
-              // height: 600.h,
-              scale: 1,
+
+            SizedBox(
+              height: height/3,
+              child: Image.asset(
+                'asset/techny-international-transportation-and-delivery-logistics.gif',
+                // width: 800.w,
+                // height: 600.h,
+                // scale: 2,
+              ),
             ),
             // kFormField100,
             SizedBox(
-              height: height / 30,
+              height: height / 100,
             ),
             LoginTextFormForEmailLogin(
                 prefixIcon: Icons.email,
@@ -83,7 +86,7 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const BottomNavigationBarScreen(),
+                      builder: (context) => const AnimatedBottomNavBar(),
                     ),
                   );
                 },
@@ -97,13 +100,7 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
             ),
-
-            TextButton(
-                onPressed: () {},
-                child: const Text(
-                  "Forgot Password..?",
-                  style: TextStyle(color: logoBlue),
-                )),
+          
           ],
         ),
       ),

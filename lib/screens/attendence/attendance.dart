@@ -1,5 +1,9 @@
+import 'dart:developer';
+
+import 'package:best_seller/api/api_service.dart';
 import 'package:best_seller/common/date_piccker_date_to.dart';
 import 'package:best_seller/common/date_picker_date_from.dart';
+import 'package:best_seller/model/attendance_api_model.dart';
 import 'package:best_seller/screens/attendence/widgets/attendence_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,14 +11,24 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../constant/const.dart';
 
-class AttendanceScreen extends StatelessWidget {
+class AttendanceScreen extends StatefulWidget {
   const AttendanceScreen({super.key});
 
   @override
+  State<AttendanceScreen> createState() => _AttendanceScreenState();
+}
+
+class _AttendanceScreenState extends State<AttendanceScreen> {
+  late List<Datum> filteredAttendanceList =[];
+
+   
+  @override
   Widget build(BuildContext context) {
+    
+    // AttendenceApi attendenceService = AttendenceApi();
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        automaticallyImplyLeading: false,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -77,13 +91,37 @@ class AttendanceScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Expanded(
-            child: ListView.builder(
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (context, index) => const AttendenceContainer(),
-              itemCount: 25,
-            ),
-          )
+          FutureBuilder(
+            future: AttendenceApi().getAllStaff(),
+            builder: (context, snapshot) {
+              // print(snapshot);
+              log(snapshot.data.toString());
+              if (snapshot.hasData) {
+                Data? attendanceList = snapshot.data;
+                if (attendanceList != null && attendanceList.data.isNotEmpty) {
+                  return Expanded(
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    itemBuilder: (context, index) =>
+                        AttendenceContainer(snapShot: attendanceList.data, index: index),
+                    itemCount: attendanceList.data.length,
+                  ),
+                );
+                }else{
+                   return const Center(child: Text('No data available'));
+                }
+                
+              } else {
+                return const Column(
+                  // mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                  ],
+                );
+              }
+            }
+          ),
         ],
       ),
     );

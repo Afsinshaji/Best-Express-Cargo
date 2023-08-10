@@ -18,14 +18,62 @@ class SenderInfoAddingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Adding Sender Info",
-          style: GoogleFonts.aBeeZee(
-            textStyle: Theme.of(context).textTheme.bodyLarge,
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: whiteShade,
+            )),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Add ",
+              style: GoogleFonts.baloo2(
+                  textStyle: Theme.of(context).textTheme.bodyLarge,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: mainConColor),
+            ),
+            Text(
+              " Sen",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              "der",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: mainConColor,
+              ),
+            ),
+            Text(
+              " In",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: mainConColor,
+              ),
+              
+            ),
+             Text(
+              "fo",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: whiteShade,
+              ),),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -54,13 +102,15 @@ class SenderInfoAddingScreen extends StatelessWidget {
               height: height / 100,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(width: width*0.01,),
-                 const DropDownListWidget(
-                     boxWidth:  2.2,
-                     title: "Sender Identification Type",
-                     hintText: "Identification Type"),
+                SizedBox(
+                   width: width * 0.01,
+                ),
+                const DropDownListWidget(
+                    boxWidth: 2.2,
+                    title: "Sender Identification Type",
+                    hintText: "Identification Type"),
                 ShipmentTextFieldWidget(
                     title: "Sender Id",
                     wlength: 2.5,
@@ -138,10 +188,9 @@ class SenderInfoAddingScreen extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-             const Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                
                 DropDownListWidget(
                     boxWidth: 2.2,
                     title: "Country",
@@ -153,19 +202,21 @@ class SenderInfoAddingScreen extends StatelessWidget {
             // SizedBox(
             //       height: height / 60,
             //     ),
-             const Padding(
+            const Padding(
               padding: EdgeInsets.all(15),
               child: DropDownListWidget(
-                  boxWidth:  1, title: "City", hintText: "Select City"),
+                  boxWidth: 1, title: "City", hintText: "Select City"),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: width*0.03,),
-                 const DropDownListWidget(
-                    boxWidth:  4, title: "Code", hintText: "code"),
+                SizedBox(
+                  width: width * 0.03,
+                ),
+                const DropDownListWidget(
+                    boxWidth: 4, title: "Code", hintText: "code"),
                 ShipmentTextFieldWidget(
-                  keyboardType: true,
+                    keyboardType: true,
                     title: "Whatsapp number",
                     wlength: 1.6,
                     hintText: "Enter 9 digits",
@@ -175,11 +226,13 @@ class SenderInfoAddingScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(width: width*0.03,),
-                 const DropDownListWidget(
-                    boxWidth:  4, title: "Code", hintText: "code"),
+                SizedBox(
+                  width: width * 0.03,
+                ),
+                const DropDownListWidget(
+                    boxWidth: 4, title: "Code", hintText: "code"),
                 ShipmentTextFieldWidget(
-                  keyboardType: true,
+                    keyboardType: true,
                     title: "Phone",
                     wlength: 1.6,
                     hintText: "Enter 9 digits",
@@ -187,7 +240,7 @@ class SenderInfoAddingScreen extends StatelessWidget {
               ],
             ),
             ShipmentTextFieldWidget(
-              keyboardType: true,
+                keyboardType: true,
                 title: "Pin Code",
                 wlength: 1,
                 hintText: "Pin Code",
@@ -195,7 +248,9 @@ class SenderInfoAddingScreen extends StatelessWidget {
 
             TextFieldForAddress(
                 title: "Address ", wlength: 1, hintText: "Address", hlength: 7),
-                SizedBox(height: height/22,),
+            SizedBox(
+              height: height / 22,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

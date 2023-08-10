@@ -23,14 +23,16 @@ class ShipmentTextFieldWidget extends StatelessWidget {
   // bool _validate = false;
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.sizeOf(context).width;
+     double fontSize = screenWidth > 600 ? 24.0 : 16.0;
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16, ),
+      padding: const EdgeInsets.only(left: 16.0, right: 16,),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
           style: GoogleFonts.sora(
-              textStyle: const TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.bold, color: logoRed)),
+              textStyle:  TextStyle(
+                  fontSize: fontSize, fontWeight: FontWeight.bold, color: logoRed)),
         ),
         Container(
           height: MediaQuery.of(context).size.height / hlength,

@@ -18,14 +18,62 @@ class ReceiverInfoAddingScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
-          "Receiver Sender Info",
-          style: GoogleFonts.aBeeZee(
-            textStyle: Theme.of(context).textTheme.bodyLarge,
-            fontSize: 30,
-            fontWeight: FontWeight.w800,
-            color: Colors.white,
-          ),
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back_ios,
+              color: whiteShade,
+            )),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Text(
+              "Add ",
+              style: GoogleFonts.baloo2(
+                  textStyle: Theme.of(context).textTheme.bodyLarge,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  color: mainConColor),
+            ),
+            Text(
+              " Rece",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            Text(
+              "iver",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: mainConColor,
+              ),
+            ),
+            Text(
+              " In",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: mainConColor,
+              ),
+              
+            ),
+             Text(
+              "fo",
+              style: GoogleFonts.baloo2(
+                textStyle: Theme.of(context).textTheme.bodyLarge,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: whiteShade,
+              ),),
+          ],
         ),
       ),
       body: SingleChildScrollView(
@@ -82,7 +130,7 @@ class ReceiverInfoAddingScreen extends StatelessWidget {
               //  mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width: width / 8,
+                  width: width / 22,
                 ),
                 Column(
                   children: [
