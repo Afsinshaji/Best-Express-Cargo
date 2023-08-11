@@ -125,15 +125,15 @@ class SenderInfoAddingScreen extends StatelessWidget {
               //  mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width: width / 8,
+                  width: width / 25,
                 ),
                 Column(
                   children: [
                     Text(
                       " Upload Document",
                       style: GoogleFonts.sora(
-                          textStyle: const TextStyle(
-                              fontSize: 14,
+                          textStyle:  TextStyle(
+                              fontSize: width/30,
                               fontWeight: FontWeight.bold,
                               color: logoRed)),
                     ),

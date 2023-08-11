@@ -40,7 +40,7 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.sizeOf(context).width;
-     double fontSize = screenWidth > 600 ? 24.0 : 16.0;
+    //  double fontSize = screenWidth > 600 ? 24.0 : 16.0;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -48,7 +48,7 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
           widget.title,
           style: GoogleFonts.sora(
               textStyle:  TextStyle(
-                  fontSize: fontSize, fontWeight: FontWeight.bold, color: logoRed)),
+                  fontSize: screenWidth/30, fontWeight: FontWeight.bold, color: logoRed)),
         ),
         Container(
            height: MediaQuery.sizeOf(context).width / 8,

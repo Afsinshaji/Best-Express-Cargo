@@ -21,9 +21,6 @@ class AttendenceContainer extends StatelessWidget {
   List<Datum> snapShot;
   final int index;
 
-
-  
-
   @override
   Widget build(BuildContext context) {
     // DateTime today = DateTime.now();
@@ -39,33 +36,27 @@ class AttendenceContainer extends StatelessWidget {
         ));
       },
       child: Container(
-        height: MediaQuery.sizeOf(context).height / 13,
+        height: MediaQuery.sizeOf(context).height / 14,
         margin: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.white,
             border: Border.all(color: logoBlue),
             borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: ListTile(
-          leading: const Padding(
-            padding: EdgeInsets.only(bottom: 10),
-            child: Icon(Icons.account_circle_rounded, size: 50),
-          ),
+          leading: Icon(Icons.account_circle_rounded,
+              size: MediaQuery.sizeOf(context).width / 10),
           title: Padding(
-            padding:  EdgeInsets.only(right:MediaQuery.sizeOf(context).width/ 22),
+            padding:
+                EdgeInsets.only(right: MediaQuery.sizeOf(context).width / 22),
             child: TextScroll(
               snapShot[index].fullName,
-              intervalSpaces: 1000,
-              velocity: Velocity(pixelsPerSecond: Offset(50, 0)),
-              
-                      
-              // mode: TextScrollMode.bouncing,
-              // // velocity: Velocity(pixelsPerSecond: Offset(150, 0)),
-              // delayBefore: Duration(milliseconds: 500),
-              // numberOfReps: 5,
-              // pauseBetween: Duration(milliseconds: 50),
-              // // textAlign: TextAlign.right,
-              // selectable: true,
-              style: const TextStyle(fontSize: 22,fontWeight: FontWeight.w500),
+              velocity: const Velocity(pixelsPerSecond: Offset(80, 0)),
+              delayBefore: const Duration(milliseconds: 500),
+              numberOfReps: 10,
+              pauseBetween: const Duration(milliseconds: 500),
+              textAlign: TextAlign.right,
+              selectable: true,
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
             ),
           ),
           // subtitle: Text("$day/$month/$year"),
@@ -97,9 +88,9 @@ class AttendenceContainer extends StatelessWidget {
 
                 log(time.toString());
               },
-              icon:  Icon(
+              icon: Icon(
                 Icons.add_circle_outline_sharp,
-                size: MediaQuery.sizeOf(context).width/12,
+                size: MediaQuery.sizeOf(context).width / 12,
                 color: logoRed,
               )),
         ),

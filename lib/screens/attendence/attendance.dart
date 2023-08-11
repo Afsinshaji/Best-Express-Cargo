@@ -19,12 +19,40 @@ class AttendanceScreen extends StatefulWidget {
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
-  late List<Datum> filteredAttendanceList =[];
 
-   
+@override
+  void initState(){
+  super.initState();
+  fetchAttendenceData();
+}
+
+    late List<Datum> attendanceList = [];
+  late List<Datum> filteredAttendanceList = [];
+  TextEditingController searchController = TextEditingController();
+
+  void fetchAttendenceData() async {
+    Data? data = await AttendenceApi().getAllStaff();
+    if (data != null && data.data.isNotEmpty) {
+      setState(() {
+        
+        attendanceList = data.data;
+        filteredAttendanceList = attendanceList;
+      });
+    }
+  }
+ 
+ void filterAttendance(String searchTerm){
+  setState(() {
+    filteredAttendanceList = attendanceList.where((attendance){
+      final name = attendance.fullName.toLowerCase();
+      return name.contains(searchTerm.toLowerCase());
+    }).toList();
+  });
+ }
+  
+
   @override
   Widget build(BuildContext context) {
-    
     // AttendenceApi attendenceService = AttendenceApi();
     return Scaffold(
       appBar: AppBar(
@@ -63,9 +91,9 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
         bottom: PreferredSize(
             preferredSize:
                 Size.fromHeight(MediaQuery.of(context).size.height / 6),
-            child: const Column(
+            child: Column(
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     DatePickerWidgetDateFrom(),
@@ -73,12 +101,14 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   ],
                 ),
                 Padding(
-                  padding:
-                      EdgeInsets.only(right: 15, left: 15, bottom: 10, top: 15),
+                  padding: const EdgeInsets.only(
+                      right: 15, left: 15, bottom: 10, top: 15),
                   child: SizedBox(
                     height: 40,
                     child: CupertinoSearchTextField(
-                      suffixIcon: Icon(
+                      controller: searchController,
+                      onChanged: filterAttendance,
+                      suffixIcon: const Icon(
                         CupertinoIcons.xmark_circle_fill,
                         size: 22,
                       ),
@@ -92,36 +122,36 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       body: Column(
         children: [
           FutureBuilder(
-            future: AttendenceApi().getAllStaff(),
-            builder: (context, snapshot) {
-              // print(snapshot);
-              log(snapshot.data.toString());
-              if (snapshot.hasData) {
-                Data? attendanceList = snapshot.data;
-                if (attendanceList != null && attendanceList.data.isNotEmpty) {
-                  return Expanded(
-                  child: ListView.builder(
-                    physics: const BouncingScrollPhysics(),
-                    itemBuilder: (context, index) =>
-                        AttendenceContainer(snapShot: attendanceList.data, index: index),
-                    itemCount: attendanceList.data.length,
-                  ),
-                );
-                }else{
-                   return const Center(child: Text('No data available'));
+              future:Future.value(filteredAttendanceList),
+              builder: (context, snapshot) {
+                // print(snapshot);
+                log(snapshot.data.toString());
+                if (snapshot.hasData) {
+                  // Data? attendanceList = snapshot.data;
+                   List<Datum>? attendanceList = snapshot.data;
+                  if (attendanceList != null &&
+                      attendanceList.isNotEmpty) {
+                    return Expanded(
+                      child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemBuilder: (context, index) => AttendenceContainer(
+                            snapShot: attendanceList, index: index),
+                        itemCount: attendanceList.length,
+                      ),
+                    );
+                  } else {
+                    return const Center(child: Text('No data available'));
+                  }
+                } else {
+                  return const Column(
+                   
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(child: CircularProgressIndicator(strokeWidth: 2)),
+                    ],
+                  );
                 }
-                
-              } else {
-                return const Column(
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Center(child: CircularProgressIndicator(strokeWidth: 2)),
-                  ],
-                );
-              }
-            }
-          ),
+              }),
         ],
       ),
     );

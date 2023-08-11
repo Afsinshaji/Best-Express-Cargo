@@ -105,7 +105,7 @@ class ReceiverInfoAddingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SizedBox(
-                  width: width * 0.02,
+                  width: width * 0.01,
                 ),
                 const Padding(
                   padding: EdgeInsets.only(
