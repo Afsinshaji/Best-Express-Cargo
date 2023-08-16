@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:best_seller/api/api_service.dart';
+import 'package:best_seller/services/api_service.dart';
 import 'package:best_seller/common/date_piccker_date_to.dart';
 import 'package:best_seller/common/date_picker_date_from.dart';
 import 'package:best_seller/model/attendance_api_model.dart';
@@ -12,21 +12,21 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../constant/const.dart';
 
 class AttendanceScreen extends StatefulWidget {
-  const AttendanceScreen({super.key});
+
+  const AttendanceScreen({ super.key});
 
   @override
   State<AttendanceScreen> createState() => _AttendanceScreenState();
 }
 
 class _AttendanceScreenState extends State<AttendanceScreen> {
+  @override
+  void initState() {
+    super.initState();
+    fetchAttendenceData();
+  }
 
-@override
-  void initState(){
-  super.initState();
-  fetchAttendenceData();
-}
-
-    late List<Datum> attendanceList = [];
+  late List<Datum> attendanceList = [];
   late List<Datum> filteredAttendanceList = [];
   TextEditingController searchController = TextEditingController();
 
@@ -34,22 +34,20 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
     Data? data = await AttendenceApi().getAllStaff();
     if (data != null && data.data.isNotEmpty) {
       setState(() {
-        
         attendanceList = data.data;
         filteredAttendanceList = attendanceList;
       });
     }
   }
- 
- void filterAttendance(String searchTerm){
-  setState(() {
-    filteredAttendanceList = attendanceList.where((attendance){
-      final name = attendance.fullName.toLowerCase();
-      return name.contains(searchTerm.toLowerCase());
-    }).toList();
-  });
- }
-  
+
+  void filterAttendance(String searchTerm) {
+    setState(() {
+      filteredAttendanceList = attendanceList.where((attendance) {
+        final name = attendance.fullName.toLowerCase();
+        return name.contains(searchTerm.toLowerCase());
+      }).toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -122,15 +120,14 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       body: Column(
         children: [
           FutureBuilder(
-              future:Future.value(filteredAttendanceList),
+              future: Future.value(filteredAttendanceList),
               builder: (context, snapshot) {
                 // print(snapshot);
                 log(snapshot.data.toString());
                 if (snapshot.hasData) {
                   // Data? attendanceList = snapshot.data;
-                   List<Datum>? attendanceList = snapshot.data;
-                  if (attendanceList != null &&
-                      attendanceList.isNotEmpty) {
+                  List<Datum>? attendanceList = snapshot.data;
+                  if (attendanceList != null && attendanceList.isNotEmpty) {
                     return Expanded(
                       child: ListView.builder(
                         physics: const BouncingScrollPhysics(),
@@ -144,7 +141,6 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   }
                 } else {
                   return const Column(
-                   
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Center(child: CircularProgressIndicator(strokeWidth: 2)),

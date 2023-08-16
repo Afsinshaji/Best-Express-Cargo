@@ -24,6 +24,7 @@ class LoginTextFormForEmailLogin extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.only(left: width /15, right: width/15),
       child: TextFormField(
+        validator: (value) => value!.isEmpty ?"Please enter your email":null,
         controller: controller,
         obscureText: passdot,
         onTapOutside: (event) {

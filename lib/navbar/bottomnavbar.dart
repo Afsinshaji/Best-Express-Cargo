@@ -15,8 +15,8 @@ class BottomNavigationBarScreen extends StatefulWidget {
 }
 
 List<Widget> pages = [
-  const DashBoardScreen(),
-  const AttendanceScreen(),
+  // const DashBoardScreen(),
+  // const AttendanceScreen(),
   const BookingScreen(),
   const ShippingScreen(),
 ];

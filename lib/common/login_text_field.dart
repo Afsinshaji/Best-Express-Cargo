@@ -36,11 +36,14 @@ class _LoginTextFormState extends State<LoginTextForm> {
 
   @override
   Widget build(BuildContext context) {
-      var width = MediaQuery.sizeOf(context).width;
+    var width = MediaQuery.sizeOf(context).width;
     return Padding(
-      padding: EdgeInsets.only(left: width/15, right: width/15),
+      padding: EdgeInsets.only(left: width / 15, right: width / 15),
       child: TextFormField(
         // validator:widget.validation,
+        validator: (value) =>
+            value!.isEmpty ? "Please enter your password" : null,
+
         controller: widget.controller,
         obscureText: widget.passwordVisiblity,
         onTapOutside: (event) {
@@ -50,7 +53,7 @@ class _LoginTextFormState extends State<LoginTextForm> {
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(25.0),
             borderSide: const BorderSide(
-              color:  logoBlue,
+              color: logoBlue,
             ),
           ),
           prefixIcon: Icon(
@@ -65,7 +68,9 @@ class _LoginTextFormState extends State<LoginTextForm> {
               },
               icon: Icon(
                 widget.passwordVisiblity ? widget.sufV : widget.suf,
-                color: widget.passwordVisiblity? const Color(0xFF00B212D):logoRed,
+                color: widget.passwordVisiblity
+                    ? const Color(0xFF00B212D)
+                    : logoRed,
               )),
           hintText: widget.hintText,
           border: const OutlineInputBorder(

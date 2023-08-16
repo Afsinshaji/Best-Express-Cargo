@@ -1,10 +1,15 @@
+import 'dart:developer';
+
 import 'package:best_seller/constant/const.dart';
+import 'package:best_seller/providers/auth_provider.dart';
 import 'package:best_seller/screens/attendence/attendance.dart';
 import 'package:best_seller/screens/booking/booking.dart';
 import 'package:best_seller/screens/dashboard/dashboard.dart';
 import 'package:best_seller/screens/shipping/shipping.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AnimatedBottomNavBar extends StatefulWidget {
   const AnimatedBottomNavBar({super.key});
@@ -14,8 +19,34 @@ class AnimatedBottomNavBar extends StatefulWidget {
 }
 
 class BAnimatedottomBState extends State<AnimatedBottomNavBar> {
+    late  SharedPreferences prefs;
+   String? myToken;
+  @override
+  void initState() {
+    // readToken(context);
+   initPrefsAndToken();
+    log("On Navigation Bar: $myToken");
+    super.initState();
+  }
+
+  
+   Future<void> initPrefsAndToken() async {
+    prefs = await SharedPreferences.getInstance();
+    // myToken = prefs.getString('token') ?? '';
+   myToken = prefs.getString('token');
+    log("On Navigation Bar: $myToken");
+  }
+  void readToken(String? token) async {
+    if (token != null) {
+      Provider.of<AuthStateManagement>(context, listen: false).saveToken(token);
+      log("token in nav bar : $token");
+    } else {
+      log("Token not found");
+    }
+  }
+
   List<Widget> pages = [
-    const DashBoardScreen(),
+     DashBoardScreen(),
     const AttendanceScreen(),
     const BookingScreen(),
     const ShippingScreen(),
@@ -29,7 +60,7 @@ class BAnimatedottomBState extends State<AnimatedBottomNavBar> {
         color: logoBlue,
         index: selectedIndex,
         backgroundColor: Colors.transparent,
-       animationCurve: Curves.linear,
+        animationCurve: Curves.linear,
         items: const [
           Icon(
             Icons.dashboard,
