@@ -1,10 +1,6 @@
-import 'dart:developer';
-
-import 'package:best_seller/services/api_service.dart';
 import 'package:best_seller/common/login_text_field.dart';
 import 'package:best_seller/common/login_textform_for_email_login.dart';
 import 'package:best_seller/constant/const.dart';
-import 'package:best_seller/navbar/animated_bottom.dart';
 import 'package:best_seller/providers/auth_provider.dart';
 
 import 'package:flutter/material.dart';
@@ -117,29 +113,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: width / 1.5,
                 child: ElevatedButton(
                   onPressed: () {
-                    // Map creds = {
-                    //   'email': controllerEmail,
-                    //   'password' : controllerPassword,
-                    //   // 'device_name' : 'mobile',
-
-                    // };
                     if (_formKey.currentState != null &&
                         _formKey.currentState!.validate()) {
-                      // log(creds.toString());
                       Provider.of<AuthStateManagement>(context, listen: false)
-                          .login(controllerEmail.text, controllerPassword.text,context);
-                          // .then(
-                          //   (value) => Navigator.of(context).pushReplacement(
-                          //     MaterialPageRoute(
-                          //       builder: (context) =>
-                          //           const AnimatedBottomNavBar(),
-                          //     ),
-                          //   ),
-                          // );
+                          .login(controllerEmail.text, controllerPassword.text,
+                              context);
                     }
-
-                    // AttendenceApi().loginApi(
-                    //     controllerEmail, controllerPassword, prefs, context);
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: logoBlue,

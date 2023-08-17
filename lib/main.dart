@@ -1,14 +1,12 @@
 import 'dart:developer';
 
 import 'package:best_seller/constant/const.dart';
+import 'package:best_seller/providers/attendance_provider.dart';
 import 'package:best_seller/providers/auth_provider.dart';
-import 'package:best_seller/screens/dashboard/dashboard.dart';
-// import 'package:best_seller/navbar/bottomnavbar.dart';
-import 'package:best_seller/screens/sign_in/sign_in_screen.dart';
-import 'package:best_seller/screens/widget_tree.dart';
+import 'package:best_seller/providers/dashboard_provider.dart';
+import 'package:best_seller/widget_tree.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:provider/provider.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -23,13 +21,21 @@ void main() async {
         ChangeNotifierProvider(
           create: (context) => AuthStateManagement(),
         ),
-      ], child:  MyApp())));
+        ChangeNotifierProvider(
+          create: (context) => DashBoardProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => AttendanceProvider(),
+        )
+      ], child: const MyApp())));
   // runApp( MyApp(token: prefs.getString('token'),));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key, });
- 
+  const MyApp({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

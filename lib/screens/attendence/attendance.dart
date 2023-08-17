@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:best_seller/providers/attendance_provider.dart';
 import 'package:best_seller/services/api_service.dart';
 import 'package:best_seller/common/date_piccker_date_to.dart';
 import 'package:best_seller/common/date_picker_date_from.dart';
@@ -8,50 +9,47 @@ import 'package:best_seller/screens/attendence/widgets/attendence_container.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../../constant/const.dart';
 
-class AttendanceScreen extends StatefulWidget {
+class AttendanceScreen extends StatelessWidget {
 
   const AttendanceScreen({ super.key});
 
   @override
-  State<AttendanceScreen> createState() => _AttendanceScreenState();
-}
+  // void initState() {
+  //   super.initState();
+  //   fetchAttendenceData();
+  // }
 
-class _AttendanceScreenState extends State<AttendanceScreen> {
-  @override
-  void initState() {
-    super.initState();
-    fetchAttendenceData();
-  }
+  // late List<Datum> attendanceList = [];
+  // late List<Datum> filteredAttendanceList = [];
+  // TextEditingController searchController = TextEditingController();
 
-  late List<Datum> attendanceList = [];
-  late List<Datum> filteredAttendanceList = [];
-  TextEditingController searchController = TextEditingController();
+  // void fetchAttendenceData() async {
+  //   Data? data = await AttendenceApi().getAllStaff();
+  //   if (data != null && data.data.isNotEmpty) {
+  //     setState(() {
+  //       attendanceList = data.data;
+  //       filteredAttendanceList = attendanceList;
+  //     });
+  //   }
+  // }
 
-  void fetchAttendenceData() async {
-    Data? data = await AttendenceApi().getAllStaff();
-    if (data != null && data.data.isNotEmpty) {
-      setState(() {
-        attendanceList = data.data;
-        filteredAttendanceList = attendanceList;
-      });
-    }
-  }
-
-  void filterAttendance(String searchTerm) {
-    setState(() {
-      filteredAttendanceList = attendanceList.where((attendance) {
-        final name = attendance.fullName.toLowerCase();
-        return name.contains(searchTerm.toLowerCase());
-      }).toList();
-    });
-  }
+  // void filterAttendance(String searchTerm) {
+  //   setState(() {
+  //     filteredAttendanceList = attendanceList.where((attendance) {
+  //       final name = attendance.fullName.toLowerCase();
+  //       return name.contains(searchTerm.toLowerCase());
+  //     }).toList();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
     // AttendenceApi attendenceService = AttendenceApi();
+    Provider.of<AttendanceProvider>(context).fetchAttendanceData();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -104,8 +102,8 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
                   child: SizedBox(
                     height: 40,
                     child: CupertinoSearchTextField(
-                      controller: searchController,
-                      onChanged: filterAttendance,
+                      controller:Provider.of<AttendanceProvider>(context).searchController,
+                      onChanged: Provider.of<AttendanceProvider>(context).filterAttendance,
                       suffixIcon: const Icon(
                         CupertinoIcons.xmark_circle_fill,
                         size: 22,
@@ -120,7 +118,7 @@ class _AttendanceScreenState extends State<AttendanceScreen> {
       body: Column(
         children: [
           FutureBuilder(
-              future: Future.value(filteredAttendanceList),
+              future: Future.value(Provider.of<AttendanceProvider>(context).filteredAttendanceList),
               builder: (context, snapshot) {
                 // print(snapshot);
                 log(snapshot.data.toString());
