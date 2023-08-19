@@ -16,7 +16,7 @@ class DashBoardProvider extends ChangeNotifier  {
    
       myTokenfront = prefs.getString('token');
 
-    log("On Navigation Bar: $myToken");
+    log("On Navigation Bar 2: $myToken");
     notifyListeners();
   }
   

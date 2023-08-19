@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:best_seller/providers/attendance_provider.dart';
-import 'package:best_seller/services/api_service.dart';
 import 'package:best_seller/common/date_piccker_date_to.dart';
 import 'package:best_seller/common/date_picker_date_from.dart';
 import 'package:best_seller/model/attendance_api_model.dart';
@@ -14,8 +13,7 @@ import 'package:provider/provider.dart';
 import '../../constant/const.dart';
 
 class AttendanceScreen extends StatelessWidget {
-
-  const AttendanceScreen({ super.key});
+  const AttendanceScreen({super.key});
 
   @override
   // void initState() {
@@ -49,7 +47,10 @@ class AttendanceScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // AttendenceApi attendenceService = AttendenceApi();
-    Provider.of<AttendanceProvider>(context).fetchAttendanceData();
+    // Provider.of<AttendanceProvider>(context).fetchAttendanceData();
+    // Provider.of<AttendanceProvider>(context, listen: false)
+    //     .fetchStaffById(context);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -102,8 +103,10 @@ class AttendanceScreen extends StatelessWidget {
                   child: SizedBox(
                     height: 40,
                     child: CupertinoSearchTextField(
-                      controller:Provider.of<AttendanceProvider>(context).searchController,
-                      onChanged: Provider.of<AttendanceProvider>(context).filterAttendance,
+                      controller: Provider.of<AttendanceProvider>(context)
+                          .searchController,
+                      onChanged: Provider.of<AttendanceProvider>(context)
+                          .filterAttendance,
                       suffixIcon: const Icon(
                         CupertinoIcons.xmark_circle_fill,
                         size: 22,
@@ -117,35 +120,35 @@ class AttendanceScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          FutureBuilder(
-              future: Future.value(Provider.of<AttendanceProvider>(context).filteredAttendanceList),
+          Consumer<AttendanceProvider>(
+            builder: (context, value, _) => FutureBuilder(
+              future: value.httpCovertedCode(context),
               builder: (context, snapshot) {
-                // print(snapshot);
-                log(snapshot.data.toString());
-                if (snapshot.hasData) {
-                  // Data? attendanceList = snapshot.data;
-                  List<Datum>? attendanceList = snapshot.data;
-                  if (attendanceList != null && attendanceList.isNotEmpty) {
-                    return Expanded(
-                      child: ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemBuilder: (context, index) => AttendenceContainer(
-                            snapShot: attendanceList, index: index),
-                        itemCount: attendanceList.length,
-                      ),
-                    );
-                  } else {
-                    return const Center(child: Text('No data available'));
-                  }
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (snapshot.hasError) {
+                  return Center(child: Text('Error: ${snapshot.error}'));
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return const Center(child: Text('No data available'));
                 } else {
-                  return const Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(child: CircularProgressIndicator(strokeWidth: 2)),
-                    ],
+                  final attendanceList = snapshot.data!;
+                  return Expanded(
+                    child: ListView.builder(
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder: (context, index) {
+                  log(' IN UI ${attendanceList[index].fullName.toString()}');
+                        return AttendenceContainer(
+                          snapShot: attendanceList,
+                          index: index,
+                        );
+                      },
+                      itemCount: attendanceList.length,
+                    ),
                   );
                 }
-              }),
+              },
+            ),
+          )
         ],
       ),
     );

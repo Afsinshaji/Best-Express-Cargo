@@ -22,28 +22,28 @@ import 'package:http/http.dart' as http;
 // }
 
 class AttendenceApi {
-  Future<Data>? getAllStaff() async {
-    Data? attendanceList;
-    final response = await http.get(
-      Uri.parse("https://bestexpress.vahid.tech/api/getStaffById"),
-    );
-    if (response.statusCode == 200) {
-      try {
-        final jsonData = json.decode(response.body);
-        // attendanceList = List<Data>.from(jsonData.map((x) => Data.fromJson(x)));
-        attendanceList = Data.fromJson(jsonData);
-      } catch (e) {
-        log("Error : $e");
-      }
-    } else {
-      log("Error of fetching");
-    }
-    for (var i = 0; i < attendanceList!.data.length; i++) {
-      log(attendanceList.data[i].fullName);
-    }
+  // Future<Data>? getAllStaff() async {
+  //   Data? attendanceList;
+  //   final response = await http.get(
+  //     Uri.parse("https://bestexpress.vahid.tech/api/getStaffById"),
+  //   );
+  //   if (response.statusCode == 200) {
+  //     try {
+  //       final jsonData = json.decode(response.body);
+  //       // attendanceList = List<Data>.from(jsonData.map((x) => Data.fromJson(x)));
+  //       attendanceList = Data.fromJson(jsonData);
+  //     } catch (e) {
+  //       log("Error : $e");
+  //     }
+  //   } else {
+  //     log("Error of fetching");
+  //   }
+  //   for (var i = 0; i < attendanceList!.data.length; i++) {
+  //     log(attendanceList.data[i].fullName);
+  //   }
 
-    return attendanceList;
-  }
+  //   return attendanceList;
+  // }
 
 
   // void loginApi(

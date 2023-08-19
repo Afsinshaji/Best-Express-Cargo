@@ -18,7 +18,7 @@ class AttendenceContainer extends StatelessWidget {
     required this.index,
   });
 
-  List<Datum> snapShot;
+  final snapShot;
   final int index;
 
   @override
@@ -43,8 +43,11 @@ class AttendenceContainer extends StatelessWidget {
             border: Border.all(color: logoBlue),
             borderRadius: const BorderRadius.all(Radius.circular(10))),
         child: ListTile(
-          leading: Icon(Icons.account_circle_rounded,
-              size: MediaQuery.sizeOf(context).width / 10),
+          leading: Padding(
+            padding: EdgeInsets.only(bottom: MediaQuery.sizeOf(context).width),
+            child: Icon(Icons.account_circle_rounded,
+                size: MediaQuery.sizeOf(context).width / 10),
+          ),
           title: Padding(
             padding:
                 EdgeInsets.only(right: MediaQuery.sizeOf(context).width / 22),
@@ -56,43 +59,51 @@ class AttendenceContainer extends StatelessWidget {
               pauseBetween: const Duration(milliseconds: 500),
               textAlign: TextAlign.right,
               selectable: true,
-              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
+              style: TextStyle(
+                  fontSize: MediaQuery.sizeOf(context).width / 22,
+                  fontWeight: FontWeight.w500),
             ),
           ),
           // subtitle: Text("$day/$month/$year"),
-          subtitle: Text("$day-$month-$year"),
-          trailing: IconButton(
-              onPressed: () {
-                var time = DateTime.now();
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CreateAttendcance(
-                    time: time,
-                  ),
-                ));
-                CurrentLocation().getCurrentLocation();
-                final snackBar = SnackBar(
-                  padding: const EdgeInsets.all(30),
-                  duration: const Duration(seconds: 3),
-                  elevation: 0,
-                  behavior: SnackBarBehavior.floating,
-                  backgroundColor: Colors.transparent,
-                  content: AwesomeSnackbarContent(
-                    inMaterialBanner: true,
-                    title: "Timing",
-                    message:
-                        "CheckIn Time: 8:00 AM To 10:30 AM |Checkout Time :8:30 PM To 11:55 PM",
-                    contentType: ContentType.help,
-                  ),
-                );
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
-                log(time.toString());
-              },
-              icon: Icon(
-                Icons.add_circle_outline_sharp,
-                size: MediaQuery.sizeOf(context).width / 12,
-                color: logoRed,
-              )),
+          subtitle: Padding(
+            padding:  EdgeInsets.only(bottom:  MediaQuery.sizeOf(context).width / 22),
+            child: Text("$day-$month-$year"),
+          ),
+          trailing: Padding(
+            padding:  EdgeInsets.only(bottom:  MediaQuery.sizeOf(context).width),
+            child: IconButton(
+                onPressed: () {
+                  var time = DateTime.now();
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => CreateAttendcance(
+                      time: time,
+                    ),
+                  ));
+                  CurrentLocation().getCurrentLocation();
+                  final snackBar = SnackBar(
+                    padding: const EdgeInsets.all(30),
+                    duration: const Duration(seconds: 3),
+                    elevation: 0,
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: Colors.transparent,
+                    content: AwesomeSnackbarContent(
+                      inMaterialBanner: true,
+                      title: "Timing",
+                      message:
+                          "CheckIn Time: 8:00 AM To 10:30 AM |Checkout Time :8:30 PM To 11:55 PM",
+                      contentType: ContentType.help,
+                    ),
+                  );
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          
+                  log(time.toString());
+                },
+                icon: Icon(
+                  Icons.add_circle_outline_sharp,
+                  size: MediaQuery.sizeOf(context).width / 12,
+                  color: logoRed,
+                )),
+          ),
         ),
       ),
     );

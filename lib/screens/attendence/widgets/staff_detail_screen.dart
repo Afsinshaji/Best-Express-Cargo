@@ -54,7 +54,7 @@ class StaffDetailScreen extends StatelessWidget {
                 SizedBox(
                   height: mHeight / 60,
                 ),
-                StaffDetailList(firstField:"Staff Id" , secondField: snapShot[index].staffId),
+                // StaffDetailList(firstField:"Staff Id" , secondField: snapShot[index].staffId),
                 SizedBox(
                   height: mHeight / 60,
                 ),

@@ -1,5 +1,3 @@
-import 'package:animated_snack_bar/animated_snack_bar.dart';
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:best_seller/providers/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +13,7 @@ signOutDilogueBox(context) {
       DialogButton(
         onPressed: () => Navigator.pop(context),
         // color: const Color.fromRGBO(0, 179, 134, 1.0),
-        gradient: const RadialGradient(radius: 2, colors: [
+        gradient: const RadialGradient(radius: 2, colors: [       
           Color.fromARGB(255, 0, 253, 34),
           Color.fromARGB(255, 43, 119, 53),
         ]),
@@ -24,11 +22,12 @@ signOutDilogueBox(context) {
           style: TextStyle(color: Colors.white, fontSize: 18),
         ),
       ),
+      
       DialogButton(
         onPressed: () {
           Provider.of<AuthStateManagement>(context, listen: false)
               .performLogout(context);
-          
+
           Navigator.of(context).pop();
         },
         gradient: const RadialGradient(radius: 2, colors: [

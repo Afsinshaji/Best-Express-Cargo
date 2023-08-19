@@ -25,7 +25,7 @@ class BAnimatedottomBState extends State<AnimatedBottomNavBar> {
   void initState() {
     // readToken(context);
    initPrefsAndToken();
-    log("On Navigation Bar: $myToken");
+    log("On Navigation Bar 1: $myToken");
     super.initState();
   }
 
@@ -34,7 +34,7 @@ class BAnimatedottomBState extends State<AnimatedBottomNavBar> {
     prefs = await SharedPreferences.getInstance();
     // myToken = prefs.getString('token') ?? '';
    myToken = prefs.getString('token');
-    log("On Navigation Bar: $myToken");
+    log("On Navigation Bar 2: $myToken");
   }
   void readToken(String? token) async {
     if (token != null) {
@@ -46,7 +46,7 @@ class BAnimatedottomBState extends State<AnimatedBottomNavBar> {
   }
 
   List<Widget> pages = [
-     DashBoardScreen(),
+     const DashBoardScreen(),
     const AttendanceScreen(),
     const BookingScreen(),
     const ShippingScreen(),

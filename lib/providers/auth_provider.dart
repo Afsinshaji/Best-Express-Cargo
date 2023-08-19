@@ -14,18 +14,28 @@ import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 class AuthStateManagement extends ChangeNotifier {
   bool _isLoggedIn = false;
-  User? _user;
+  //  User? user;
   var tokenGet;
   bool get authenticated => _isLoggedIn;
-  User? get user => _user;
+  // User? get user => _user;
+  User? user;
+     var _branch_id;
+     dynamic get branch_id => _branch_id;
 
-  Future<void> login(
-      String email, String password, BuildContext context) async {
+  Future login(String email, String password, BuildContext context) async {
+   
+    String  userName;
+    String userEmail;
     try {
       var response = await _performLogin(email, password);
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final token = response.data['token'].toString();
+        _branch_id = response.data['user']['branch_id'].toString();
+        // userEmail =response.data['user']['email'].toString();
+        // userName =response.data['user']['name'].toString();
+        // user=User(branch_id: branch_id,email: userEmail,name: userName);
+        log("in login $branch_id");
         saveToken(token);
         _isLoggedIn = true;
 
@@ -34,6 +44,7 @@ class AuthStateManagement extends ChangeNotifier {
             builder: (context) => const AnimatedBottomNavBar(),
           ),
         );
+
         showTopSnackBar(
           Overlay.of(context),
           const CustomSnackBar.success(
@@ -41,9 +52,10 @@ class AuthStateManagement extends ChangeNotifier {
           ),
         );
         notifyListeners();
+        // return branch_id;
       } else {
         // Handle non-200 status code here
-        log('Login Failed: ${response.statusCode}');
+        log('Login Failed 1: ${response.statusCode}');
       }
     } catch (e) {
       // Handle other errors here
@@ -53,7 +65,7 @@ class AuthStateManagement extends ChangeNotifier {
           message: "Enter Correct UserName and Password",
         ),
       );
-      log('Login Error: $e');
+      log('Login Error catch: $e');
     }
   }
 
