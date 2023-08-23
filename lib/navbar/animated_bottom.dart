@@ -36,14 +36,14 @@ class BAnimatedottomBState extends State<AnimatedBottomNavBar> {
    myToken = prefs.getString('token');
     log("On Navigation Bar 2: $myToken");
   }
-  void readToken(String? token) async {
-    if (token != null) {
-      Provider.of<AuthStateManagement>(context, listen: false).saveToken(token);
-      log("token in nav bar : $token");
-    } else {
-      log("Token not found");
-    }
-  }
+  // void readToken(String? token) async {
+  //   if (token != null) {
+  //     Provider.of<AuthStateManagement>(context, listen: false).saveToken(token);
+  //     log("token in nav bar : $token");
+  //   } else {
+  //     log("Token not found");
+  //   }
+  // }
 
   List<Widget> pages = [
      const DashBoardScreen(),

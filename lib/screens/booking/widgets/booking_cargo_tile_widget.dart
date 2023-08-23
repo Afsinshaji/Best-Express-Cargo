@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import '../../../constant/const.dart';
 
 class BookingCargoTileWidget extends StatelessWidget {
-  const BookingCargoTileWidget({super.key, this.index = 1});
+  const BookingCargoTileWidget({super.key, this.index = 1,required this.snapshot});
   final int index;
+  final snapshot;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -47,7 +48,7 @@ class BookingCargoTileWidget extends StatelessWidget {
                 const BoxDecoration(shape: BoxShape.circle, color: logoBlue),
             child: Center(
               child: Text(
-                "$index",
+                "${index+1}",
                 style: const TextStyle(
                     color: whiteShade,
                     fontSize: 18,
@@ -55,7 +56,7 @@ class BookingCargoTileWidget extends StatelessWidget {
               ),
             ),
           ),
-          title: const Text("Booking No",
+          title:  Text(snapshot[index].bookingNumber,
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         ),
       ),

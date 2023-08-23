@@ -69,41 +69,38 @@ class AttendenceContainer extends StatelessWidget {
             padding:  EdgeInsets.only(bottom:  MediaQuery.sizeOf(context).width / 22),
             child: Text("$day-$month-$year"),
           ),
-          trailing: Padding(
-            padding:  EdgeInsets.only(bottom:  MediaQuery.sizeOf(context).width),
-            child: IconButton(
-                onPressed: () {
-                  var time = DateTime.now();
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CreateAttendcance(
-                      time: time,
-                    ),
-                  ));
-                  CurrentLocation().getCurrentLocation();
-                  final snackBar = SnackBar(
-                    padding: const EdgeInsets.all(30),
-                    duration: const Duration(seconds: 3),
-                    elevation: 0,
-                    behavior: SnackBarBehavior.floating,
-                    backgroundColor: Colors.transparent,
-                    content: AwesomeSnackbarContent(
-                      inMaterialBanner: true,
-                      title: "Timing",
-                      message:
-                          "CheckIn Time: 8:00 AM To 10:30 AM |Checkout Time :8:30 PM To 11:55 PM",
-                      contentType: ContentType.help,
-                    ),
-                  );
-                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          trailing: IconButton(
+              onPressed: () {
+                var time = DateTime.now();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CreateAttendcance(
+                    time: time,
+                  ),
+                ));
+                CurrentLocation().getCurrentLocation();
+                final snackBar = SnackBar(
+                  padding: const EdgeInsets.all(30),
+                  duration: const Duration(seconds: 3),
+                  elevation: 0,
+                  behavior: SnackBarBehavior.floating,
+                  backgroundColor: Colors.transparent,
+                  content: AwesomeSnackbarContent(
+                    inMaterialBanner: true,
+                    title: "Timing",
+                    message:
+                        "CheckIn Time: 8:00 AM To 10:30 AM |Checkout Time :8:30 PM To 11:55 PM",
+                    contentType: ContentType.help,
+                  ),
+                );
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
           
-                  log(time.toString());
-                },
-                icon: Icon(
-                  Icons.add_circle_outline_sharp,
-                  size: MediaQuery.sizeOf(context).width / 12,
-                  color: logoRed,
-                )),
-          ),
+                log(time.toString());
+              },
+              icon: Icon(
+                Icons.add_circle_outline_sharp,
+                size: MediaQuery.sizeOf(context).width / 12,
+                color: logoRed,
+              )),
         ),
       ),
     );

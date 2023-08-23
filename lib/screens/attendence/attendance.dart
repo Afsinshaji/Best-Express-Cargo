@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:best_seller/providers/attendance_provider.dart';
 import 'package:best_seller/common/date_piccker_date_to.dart';
 import 'package:best_seller/common/date_picker_date_from.dart';
-import 'package:best_seller/model/attendance_api_model.dart';
 import 'package:best_seller/screens/attendence/widgets/attendence_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +42,6 @@ class AttendanceScreen extends StatelessWidget {
   //     }).toList();
   //   });
   // }
-
   @override
   Widget build(BuildContext context) {
     // AttendenceApi attendenceService = AttendenceApi();
@@ -102,16 +100,24 @@ class AttendanceScreen extends StatelessWidget {
                       right: 15, left: 15, bottom: 10, top: 15),
                   child: SizedBox(
                     height: 40,
-                    child: CupertinoSearchTextField(
-                      controller: Provider.of<AttendanceProvider>(context)
-                          .searchController,
-                      onChanged: Provider.of<AttendanceProvider>(context)
-                          .filterAttendance,
-                      suffixIcon: const Icon(
-                        CupertinoIcons.xmark_circle_fill,
-                        size: 22,
+                    child: GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      child: CupertinoSearchTextField(
+                        controller: Provider.of<AttendanceProvider>(context)
+                            .searchController,
+                            
+                        // onChanged: (value) {
+                        //   Provider.of<AttendanceProvider>(context, listen: false)
+                        //       .filterAttendance(value);
+                        // },
+                        suffixIcon: const Icon(
+                          CupertinoIcons.xmark_circle_fill,
+                          size: 22,
+                        ),
+                        backgroundColor: Colors.white,
                       ),
-                      backgroundColor: Colors.white,
                     ),
                   ),
                 ),
@@ -127,8 +133,8 @@ class AttendanceScreen extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error: ${snapshot.error}'));
-                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(child: Text('Error : ${snapshot.error}'));
+                } else if (snapshot.data!.isEmpty) {
                   return const Center(child: Text('No data available'));
                 } else {
                   final attendanceList = snapshot.data!;
@@ -136,7 +142,7 @@ class AttendanceScreen extends StatelessWidget {
                     child: ListView.builder(
                       physics: const BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
-                  log(' IN UI ${attendanceList[index].fullName.toString()}');
+                        log(' IN UI ${attendanceList[index].fullName.toString()}');
                         return AttendenceContainer(
                           snapShot: attendanceList,
                           index: index,

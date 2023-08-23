@@ -1,15 +1,18 @@
 import 'package:best_seller/common/textfield_widget.dart';
 import 'package:best_seller/functions/fingerprint.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../constant/const.dart';
 
 // ignore: must_be_immutable
 class CreateAttendcance extends StatefulWidget {
-  CreateAttendcance({super.key, required this.time,});
+  CreateAttendcance({
+    super.key,
+    required this.time,
+  });
 
   DateTime time;
-
 
   @override
   State<CreateAttendcance> createState() => _CreateAttendcanceState();
@@ -96,7 +99,6 @@ class _CreateAttendcanceState extends State<CreateAttendcance> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    
                   ],
                 ),
               ),
@@ -109,6 +111,58 @@ class _CreateAttendcanceState extends State<CreateAttendcance> {
                   wlength: 0,
                   hintText: "Date",
                   hlength: 10),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "Attendance Date",
+                    style: GoogleFonts.sora(
+                        textStyle: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold)),
+                  ),
+                ],
+              ),
+              Container(
+                height: MediaQuery.sizeOf(context).height / 20,
+                width: MediaQuery.sizeOf(context).width / 1.1,
+                decoration: BoxDecoration(
+                    color: whiteShade,
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: greyShade)),
+                // child: Padding(
+                //   padding: const EdgeInsets.all(8.0),
+                //   child: TextFormField(
+                //     // controller: controller,
+                //     onTapOutside: (event) {
+                //       FocusScope.of(context).requestFocus(FocusNode());
+                //     },
+                //     // keyboardType:
+                //     //     keyboardType ? TextInputType.number : TextInputType.text,
+                //     cursorColor: Colors.black,
+                //     // minLines: 1,
+                //     // maxLines: 1,
+                //     textAlignVertical: TextAlignVertical.center,
+                //     decoration: InputDecoration(
+                //       hintText: hintText,
+                //       hintStyle: GoogleFonts.ubuntu(
+                //         textStyle: TextStyle(
+                //             color: Color.fromRGBO(194, 191, 191, 1),
+                //             fontSize: 18),
+                //       ),
+                //       filled: true,
+                //       fillColor: Colors.transparent,
+                //       border: InputBorder.none,
+                //     ),
+                //     style: GoogleFonts.cutiveMono (
+                //       height: 1,
+                //       textStyle: TextStyle(
+                //         color: Colors.black,
+                //         fontSize:18 ,
+                //       ),
+                //     ),
+                //   ),
+                // ),
+              ),
               TextFieldWidget(
                   title: "Staff Name",
                   wlength: 0,

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/providers/attendance_provider.dart';
 import 'package:best_seller/providers/auth_provider.dart';
+import 'package:best_seller/providers/booking_provider.dart';
 import 'package:best_seller/providers/dashboard_provider.dart';
 import 'package:best_seller/widget_tree.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,9 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => AttendanceProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => BookingProvider(),
         )
       ], child: const MyApp())));
   // runApp( MyApp(token: prefs.getString('token'),));

@@ -110,9 +110,10 @@ class AttendanceProvider extends ChangeNotifier {
   //*********************************** */ chat Gpt coverted code to http *********************************
 
  Future<List<Datum>> httpCovertedCode(BuildContext context) async {
-  final bId = Provider.of<AuthStateManagement>(context).branch_id;
+  // final bId = Provider.of<AuthStateManagement>(context).branch_id;
   SharedPreferences prefs = await SharedPreferences.getInstance();
   String myTokenfront = prefs.getString('token')!;
+  String bId = prefs.getString('branch_id')!;
 
   List<Datum> dataList = [];
 

@@ -36,7 +36,7 @@ class AuthStateManagement extends ChangeNotifier {
         // userName =response.data['user']['name'].toString();
         // user=User(branch_id: branch_id,email: userEmail,name: userName);
         log("in login $branch_id");
-        saveToken(token);
+        saveToken(token,_branch_id);
         _isLoggedIn = true;
 
         Navigator.of(context).pushReplacement(
@@ -83,10 +83,12 @@ class AuthStateManagement extends ChangeNotifier {
     }
   }
 
-  Future<void> saveToken(String token) async {
+  Future<void> saveToken(String token,String branchid) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
+    prefs.setString('branch_id',branchid);
     log('Token saved successfully: $token');
+    log('branchid saved successfully: $branchid');
   }
 
   Future<bool> checkAuthentication() async {
