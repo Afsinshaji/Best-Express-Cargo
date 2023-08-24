@@ -1,3 +1,5 @@
+import 'package:best_seller/screens/booking/inside_screen/booking_no_in_edit_shipment.dart';
+import 'package:best_seller/screens/booking/inside_screen/moving_number_in_edit_moving.dart';
 import 'package:best_seller/screens/booking/widgets/date_in_edit_moving.dart';
 import 'package:best_seller/screens/booking/widgets/sender_address_adding_button.dart';
 import 'package:best_seller/screens/booking/widgets/title_info_in_edit_shipment.dart';
@@ -9,7 +11,9 @@ import '../../../common/shipment_textfield.dart';
 import '../widgets/drop_down_widget.dart';
 
 class EditMovingScreen extends StatelessWidget {
-  const EditMovingScreen({super.key});
+  EditMovingScreen({super.key, required this.snapShot, required this.index});
+  final snapShot;
+  int index;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +53,15 @@ class EditMovingScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                ShipmentTextFieldWidget(
-                    title: "Moving No.",
-                    wlength: 2.5,
-                    hintText: "123",
-                    hlength: 19),
+                // ShipmentTextFieldWidget(
+                //     title: "Moving No.",
+                //     wlength: 2.5,
+                //     hintText: "123dd",
+                //     hlength: 19),
+                BookingNumberInEditMoving(
+                  snapShot: snapShot,
+                  index: index,
+                ),
                 const DropDownListWidget(
                     boxWidth: 2,
                     title: "Branch List",
@@ -74,10 +82,10 @@ class EditMovingScreen extends StatelessWidget {
               textFieldHint: "Kalamassery , ernakulam, kerala",
             ),
             ShipmentTextFieldWidget(
-              title: "Phone",
-              wlength: 0,
-              hintText: "Phone Number",
-              hlength: 19),
+                title: "Phone",
+                wlength: 0,
+                hintText: "Phone Number",
+                hlength: 19),
             SizedBox(
               height: height / 40,
             ),
@@ -86,9 +94,7 @@ class EditMovingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DropDownListWidget(
-                    boxWidth: 2.3,
-                    title: "Source",
-                    hintText: "Select Source"),
+                    boxWidth: 2.3, title: "Source", hintText: "Select Source"),
                 DropDownListWidget(
                     boxWidth: 2.3,
                     title: "Destination",
@@ -99,58 +105,52 @@ class EditMovingScreen extends StatelessWidget {
               height: height / 40,
             ),
             const Divider(),
-            
             const TitleInfoWidget(heading: "Shipping Info"),
-             const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  DropDownListWidget(
-                      boxWidth: 2.3,
-                      title: "Courier Company",
-                      hintText: "Select Courier Company"),
-                  DropDownListWidget(
-                      boxWidth: 2.3,
-                      title: "Payment Method",
-                      hintText: "Select Payment Method"),
-                ],
-              ),
-              SizedBox(
-                height: height / 50,
-              ),
-               const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // SizedBox(width: width/150,),
-                  DateInEditMoving(),
-                  DropDownListWidget(
-                      boxWidth: 2.3, title: "Collected By", hintText: "Select"),
-                ],
-              ),
-              SizedBox(
-                height: height / 50,
-              ),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  DropDownListWidget(
-                      boxWidth: 2.3,
-                      title: "Status",
-                      hintText: "Select Status"),
-                  DropDownListWidget(
-                      boxWidth: 2.3,
-                      title: "Delivery Type",
-                      hintText: "Select Delivery Type"),
-                ],
-              ),
-                const Padding(
-                padding: EdgeInsets.all(15),
-                child: DropDownListWidget(
-                    boxWidth: 1,
-                    title: "Driver Name",
-                    hintText: "Select Driver"),
-              ),
-
- SizedBox(
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DropDownListWidget(
+                    boxWidth: 2.3,
+                    title: "Courier Company",
+                    hintText: "Select Courier Company"),
+                DropDownListWidget(
+                    boxWidth: 2.3,
+                    title: "Payment Method",
+                    hintText: "Select Payment Method"),
+              ],
+            ),
+            SizedBox(
+              height: height / 50,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                // SizedBox(width: width/150,),
+                DateInEditMoving(),
+                DropDownListWidget(
+                    boxWidth: 2.3, title: "Collected By", hintText: "Select"),
+              ],
+            ),
+            SizedBox(
+              height: height / 50,
+            ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                DropDownListWidget(
+                    boxWidth: 2.3, title: "Status", hintText: "Select Status"),
+                DropDownListWidget(
+                    boxWidth: 2.3,
+                    title: "Delivery Type",
+                    hintText: "Select Delivery Type"),
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.all(15),
+              child: DropDownListWidget(
+                  boxWidth: 1, title: "Driver Name", hintText: "Select Driver"),
+            ),
+            SizedBox(
               height: height / 50,
             ),
             Row(
@@ -174,17 +174,18 @@ class EditMovingScreen extends StatelessWidget {
             ),
             SizedBox(
               height: height / 10,
-            )          ],
+            )
+          ],
         ),
       ),
     );
   }
-  
+
   submit(BuildContext context) {
     Navigator.of(context).pop();
   }
-  
+
   cancel(BuildContext context) {
-     Navigator.of(context).pop();
+    Navigator.of(context).pop();
   }
 }

@@ -24,8 +24,8 @@ class AuthStateManagement extends ChangeNotifier {
 
   Future login(String email, String password, BuildContext context) async {
    
-    String  userName;
-    String userEmail;
+    // String  userName;
+    // String userEmail;
     try {
       var response = await _performLogin(email, password);
 

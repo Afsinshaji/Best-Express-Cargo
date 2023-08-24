@@ -40,7 +40,13 @@ class CargoScreen extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error: in  ${snapshot.error}'));
+                  return const Center(
+                    // child: Image.asset(
+                    //   "asset/looney-locator.gif",
+                    //   scale: 1,
+                    // ),
+                    child: Text("No Network"),
+                  );
                 } else if (snapshot.data!.isEmpty) {
                   return const Center(child: Text('No data available'));
                 } else {

@@ -1,4 +1,5 @@
 import 'package:best_seller/common/shipment_textfield.dart';
+import 'package:best_seller/screens/booking/inside_screen/booking_no_in_edit_shipment.dart';
 import 'package:best_seller/screens/booking/inside_screen/receiver_info_adding_screen.dart';
 import 'package:best_seller/screens/booking/inside_screen/sender_info_adding_screen.dart';
 import 'package:best_seller/screens/booking/widgets/date_in_shipping_info.dart';
@@ -15,8 +16,9 @@ import '../widgets/floating_button.dart';
 import '../widgets/sender_address_adding_button.dart';
 
 class EditShipmentScreen extends StatelessWidget {
-  const EditShipmentScreen({super.key});
-
+   EditShipmentScreen({super.key,required this.snapShot,required this.index});
+ final  snapShot;
+ int index;
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.sizeOf(context).height;
@@ -26,13 +28,13 @@ class EditShipmentScreen extends StatelessWidget {
       appBar: AppBar(
         // centerTitle: true,
         title: Row(
-           mainAxisAlignment: MainAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               "Edit ",
               style: GoogleFonts.baloo2(
                   textStyle: Theme.of(context).textTheme.bodyLarge,
-                  fontSize:30,
+                  fontSize: 30,
                   fontWeight: FontWeight.bold,
                   color: mainConColor),
             ),
@@ -77,11 +79,12 @@ class EditShipmentScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                ShipmentTextFieldWidget(
-                    title: "Booking No.",
-                    wlength: 2.5,
-                    hintText: "TB10019",
-                    hlength: 19),
+                // ShipmentTextFieldWidget(
+                //     title: "Booking No.",
+                //     wlength: 2.5,
+                //     hintText: "TB10019",
+                //     hlength: 19),
+                BookingNumberInEditShipment(snapShot: snapShot, index: index,),
                 const DropDownListWidget(
                     boxWidth: 2,
                     title: "Branch List",
@@ -229,6 +232,8 @@ class EditShipmentScreen extends StatelessWidget {
     Navigator.of(context).pop();
   }
 }
+
+
 
 navigationToSenderAddressAddingScreen(BuildContext context) {
   Navigator.of(context).push(

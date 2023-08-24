@@ -107,7 +107,7 @@ class AttendanceScreen extends StatelessWidget {
                       child: CupertinoSearchTextField(
                         controller: Provider.of<AttendanceProvider>(context)
                             .searchController,
-                            
+
                         // onChanged: (value) {
                         //   Provider.of<AttendanceProvider>(context, listen: false)
                         //       .filterAttendance(value);
@@ -133,9 +133,18 @@ class AttendanceScreen extends StatelessWidget {
                 if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Center(child: CircularProgressIndicator());
                 } else if (snapshot.hasError) {
-                  return Center(child: Text('Error : ${snapshot.error}'));
+                  return const Center(
+                    // child: Image.asset(
+                    //   "asset/sammy-line-no-connection.gif",
+                    //   scale: 1,
+                    // ),
+                     child: Text("No Network"),
+                  );
                 } else if (snapshot.data!.isEmpty) {
-                  return const Center(child: Text('No data available'));
+                  return const Center(
+                      child: Text(
+                    'No data available',
+                  ));
                 } else {
                   final attendanceList = snapshot.data!;
                   return Expanded(

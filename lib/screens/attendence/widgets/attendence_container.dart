@@ -4,7 +4,6 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 // import 'package:best_seller/api/api_service.dart';
 import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/functions/location.dart';
-import 'package:best_seller/model/attendance_api_model.dart';
 import 'package:best_seller/screens/attendence/widgets/create_attendance.dart';
 import 'package:best_seller/screens/attendence/widgets/staff_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +74,7 @@ class AttendenceContainer extends StatelessWidget {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => CreateAttendcance(
                     time: time,
+                    snapShot: snapShot[index].fullName,
                   ),
                 ));
                 CurrentLocation().getCurrentLocation();

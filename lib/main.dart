@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:best_seller/constant/const.dart';
 import 'package:best_seller/providers/attendance_provider.dart';
 import 'package:best_seller/providers/auth_provider.dart';
+import 'package:best_seller/providers/booking_moving_provider.dart';
 import 'package:best_seller/providers/booking_provider.dart';
 import 'package:best_seller/providers/dashboard_provider.dart';
 import 'package:best_seller/widget_tree.dart';
@@ -30,7 +31,8 @@ void main() async {
         ),
         ChangeNotifierProvider(
           create: (context) => BookingProvider(),
-        )
+        ),
+        ChangeNotifierProvider(create: (context) => BookingMovingProvider(),)
       ], child: const MyApp())));
   // runApp( MyApp(token: prefs.getString('token'),));
 }
@@ -51,6 +53,6 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         // home: const BottomNavigationBarScreen(),
-        home: WidgetTree());
+        home: const WidgetTree());
   }
 }

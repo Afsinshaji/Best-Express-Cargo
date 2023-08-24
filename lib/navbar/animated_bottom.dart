@@ -1,14 +1,12 @@
 import 'dart:developer';
 
 import 'package:best_seller/constant/const.dart';
-import 'package:best_seller/providers/auth_provider.dart';
 import 'package:best_seller/screens/attendence/attendance.dart';
 import 'package:best_seller/screens/booking/booking.dart';
 import 'package:best_seller/screens/dashboard/dashboard.dart';
 import 'package:best_seller/screens/shipping/shipping.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AnimatedBottomNavBar extends StatefulWidget {

@@ -119,11 +119,12 @@ class DashBoardScreen extends StatelessWidget {
                 IconButton(
                 onPressed: () {
                   var time = DateTime.now();
-                  Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => CreateAttendcance(
-                      time: time,
-                    ),
-                  ));
+                  // Navigator.of(context).push(MaterialPageRoute(
+                  //   builder: (context) => CreateAttendcance(
+                  //     time: time,
+                  //     snapShot: time,
+                  //   ),
+                  // ));
                   CurrentLocation().getCurrentLocation();
                   final snackBar = SnackBar(
                     padding: const EdgeInsets.all(30),

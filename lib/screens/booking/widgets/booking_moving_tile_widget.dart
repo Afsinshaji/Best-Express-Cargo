@@ -4,16 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookingMovingTileWidget extends StatelessWidget {
-  const BookingMovingTileWidget({super.key, this.index = 0});
+  const BookingMovingTileWidget({super.key, this.index = 0,required this.snapShot});
 
   final int index;
+  final snapShot;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const EditMovingScreen(),
+            builder: (context) =>  EditMovingScreen(index: index,snapShot: snapShot),
           ),
         );
       },
@@ -48,7 +49,7 @@ class BookingMovingTileWidget extends StatelessWidget {
                 const BoxDecoration(shape: BoxShape.circle, color: logoRed),
             child: Center(
               child: Text(
-                "$index",
+                "${index+1}",
                 style: const TextStyle(
                     color: whiteShade,
                     fontSize: 18,
@@ -56,8 +57,8 @@ class BookingMovingTileWidget extends StatelessWidget {
               ),
             ),
           ),
-          title: const Text("Booking No",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+          title:  Text(snapShot[index].movingNumber,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
         ),
       ),
     );

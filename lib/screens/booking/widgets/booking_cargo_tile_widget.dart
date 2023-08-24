@@ -13,7 +13,7 @@ class BookingCargoTileWidget extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => const EditShipmentScreen(),
+            builder: (context) =>  EditShipmentScreen(snapShot: snapshot,index: index),
           ),
         );
       },
