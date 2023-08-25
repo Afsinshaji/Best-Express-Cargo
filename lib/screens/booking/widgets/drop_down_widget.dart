@@ -8,10 +8,12 @@ class DropDownListWidget extends StatefulWidget {
       {super.key,
       required this.title,
       required this.hintText,
-      required this.boxWidth});
+      required this.boxWidth,
+      this.dropDownValue});
   final String title;
   final String hintText;
   final double boxWidth;
+  final ValueNotifier? dropDownValue;
   @override
   State<DropDownListWidget> createState() => _DropDownListWidgetState();
 }
@@ -47,11 +49,13 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
         Text(
           widget.title,
           style: GoogleFonts.sora(
-              textStyle:  TextStyle(
-                  fontSize: screenWidth/30, fontWeight: FontWeight.bold, color: logoRed)),
+              textStyle: TextStyle(
+                  fontSize: screenWidth / 30,
+                  fontWeight: FontWeight.bold,
+                  color: logoRed)),
         ),
         Container(
-           height: MediaQuery.sizeOf(context).width / 8,
+          height: MediaQuery.sizeOf(context).width / 8,
           decoration: BoxDecoration(
             color: greyShade,
             borderRadius: BorderRadius.circular(8),
@@ -59,7 +63,6 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
           child: Center(
             child: DropdownButtonHideUnderline(
               child: DropdownButton2<String>(
-               
                 isExpanded: true,
                 hint: Text(
                   widget.hintText,
@@ -83,13 +86,15 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
                 onChanged: (value) {
                   setState(() {
                     selectedValue = value;
+                    if (widget.dropDownValue != null) {
+                      widget.dropDownValue!.value = value;
+                    }
                   });
                 },
-                buttonStyleData:  ButtonStyleData(
+                buttonStyleData: ButtonStyleData(
                   padding: EdgeInsets.symmetric(horizontal: 16),
                   height: 40,
-                  width:MediaQuery.sizeOf(context).width/ widget.boxWidth,
-                  
+                  width: MediaQuery.sizeOf(context).width / widget.boxWidth,
                 ),
                 dropdownStyleData: const DropdownStyleData(
                   maxHeight: 200,
@@ -138,9 +143,7 @@ class _DropDownListWidgetState extends State<DropDownListWidget> {
                     textEditingController.clear();
                   }
                 },
-                
               ),
-              
             ),
           ),
         ),

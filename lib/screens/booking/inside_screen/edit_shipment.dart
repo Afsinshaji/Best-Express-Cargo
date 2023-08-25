@@ -16,9 +16,17 @@ import '../widgets/floating_button.dart';
 import '../widgets/sender_address_adding_button.dart';
 
 class EditShipmentScreen extends StatelessWidget {
-   EditShipmentScreen({super.key,required this.snapShot,required this.index});
- final  snapShot;
- int index;
+  EditShipmentScreen({super.key, required this.snapShot, required this.index});
+  final snapShot;
+  int index;
+  ValueNotifier branch = ValueNotifier('');
+  ValueNotifier courierCompany = ValueNotifier('');
+  ValueNotifier shippingMethod = ValueNotifier('');
+  ValueNotifier paymentMethod = ValueNotifier('');
+  ValueNotifier status = ValueNotifier('');
+  ValueNotifier collected = ValueNotifier('');
+  ValueNotifier deliveryType = ValueNotifier('');
+  ValueNotifier staff = ValueNotifier('');
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.sizeOf(context).height;
@@ -84,11 +92,16 @@ class EditShipmentScreen extends StatelessWidget {
                 //     wlength: 2.5,
                 //     hintText: "TB10019",
                 //     hlength: 19),
-                BookingNumberInEditShipment(snapShot: snapShot, index: index,),
-                const DropDownListWidget(
-                    boxWidth: 2,
-                    title: "Branch List",
-                    hintText: "Select Branch List"),
+                BookingNumberInEditShipment(
+                  snapShot: snapShot,
+                  index: index,
+                ),
+                DropDownListWidget(
+                  boxWidth: 2,
+                  title: "Branch List",
+                  hintText: "Select Branch List",
+                  dropDownValue: branch,
+                ),
               ],
             ),
             SizedBox(
@@ -122,14 +135,17 @@ class EditShipmentScreen extends StatelessWidget {
             ),
             const Divider(),
             const TitleInfoWidget(heading: "Shipping Info"),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DropDownListWidget(
+                  dropDownValue: courierCompany,
                     boxWidth: 2.3,
                     title: "Courier Company",
                     hintText: "Select Courier Company"),
                 DropDownListWidget(
+                  dropDownValue: shippingMethod,
+
                     boxWidth: 2.3,
                     title: "Shipping Methods",
                     hintText: "Select Shipping Methods"),
@@ -138,26 +154,30 @@ class EditShipmentScreen extends StatelessWidget {
             SizedBox(
               height: height / 40,
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 DropDownListWidget(
+                  dropDownValue: paymentMethod,
                     boxWidth: 2.3,
                     title: "Payment Method",
                     hintText: "Select Payment Method"),
                 DropDownListWidget(
+                  
+                  dropDownValue: status,
                     boxWidth: 2.3, title: "Status", hintText: "Select Status"),
               ],
             ),
             SizedBox(
               height: height / 50,
             ),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // SizedBox(width: width/150,),
-                DateInShippingInfo(),
+                const DateInShippingInfo(),
                 DropDownListWidget(
+                  dropDownValue: collected,
                     boxWidth: 2.3, title: "Collected By", hintText: "Select"),
               ],
             ),
@@ -170,7 +190,8 @@ class EditShipmentScreen extends StatelessWidget {
                 SizedBox(
                   width: width * 0.02,
                 ),
-                const DropDownListWidget(
+                 DropDownListWidget(
+                  dropDownValue: deliveryType,
                     boxWidth: 2.2,
                     title: "Delivery Type",
                     hintText: "Select Delivery Type"),
@@ -182,9 +203,10 @@ class EditShipmentScreen extends StatelessWidget {
                     hlength: 19),
               ],
             ),
-            const Padding(
-              padding: EdgeInsets.all(15),
+             Padding(
+              padding: const EdgeInsets.all(15),
               child: DropDownListWidget(
+                dropDownValue: staff,
                   boxWidth: 1,
                   title: "Staff Name",
                   hintText: "Select Staff Name"),
@@ -232,8 +254,6 @@ class EditShipmentScreen extends StatelessWidget {
     Navigator.of(context).pop();
   }
 }
-
-
 
 navigationToSenderAddressAddingScreen(BuildContext context) {
   Navigator.of(context).push(
